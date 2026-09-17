@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <!--POLICY-->
+    <title>
+      CaptionShift — Shift, stretch and convert SRT or WebVTT captions
+    </title>
+    <meta
+      name="description"
+      content="Shift, stretch and convert SRT or WebVTT captions. Fix an offset or timing drift, right in your browser."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23775039'/%3E%3Ctext x='32' y='44' font-size='39' text-anchor='middle' fill='white' font-family='Arial'%3EC%3C/text%3E%3C/svg%3E"
+    />
+    <!--STYLE-->
+  </head>
+  <body>
+    <header>
+      <a href="#" class="brand"
+        ><span class="brandmark" aria-hidden="true">↔</span>CaptionShift</a
+      >
+      <nav class="nav">
+        <button class="text-button desktop" id="privacy">Local & private</button
+        ><a
+          href="https://github.com/UTokyo2026/captionshift/blob/main/README.zh-CN.md"
+          target="_blank"
+          rel="noreferrer"
+          >中文说明</a
+        ><a
+          href="https://github.com/UTokyo2026/captionshift"
+          target="_blank"
+          rel="noreferrer"
+          >GitHub ↗</a
+        >
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">VIDEO / BACK IN SYNC</p>
+          <h1>Good subtitles.<br />Perfect timing.</h1>
+          <p class="intro">
+            Shift, stretch and convert SRT or WebVTT captions. Fix an offset or
+            timing drift, right in your browser.
+          </p>
+        </div>
+        <div class="hero-note" aria-hidden="true">
+          <strong>↔</strong><span>LOCAL BY DESIGN</span>
+        </div>
+      </section>
+      <section class="workbench" aria-label="CaptionShift workspace">
+        <div class="workbar">
+          <span>01 / YOUR WORKSPACE</span
+          ><button id="demo" class="text-button">Try an example ↗</button>
+        </div>
+        <div class="grid sidebar">
+          <div class="pane">
+            <label class="field"
+              ><span>Shift by seconds (+ delays / − advances)</span
+              ><input id="offset" type="number" value="1.5" step="0.1" /></label
+            ><label class="field"
+              ><span>Time multiplier (1 = unchanged)</span
+              ><input
+                id="scale"
+                type="number"
+                value="1"
+                step="0.001"
+                min="0.01"
+                max="10" /></label
+            ><label class="field"
+              ><span>Export format</span
+              ><select id="format">
+                <option value="srt">SRT</option>
+                <option value="vtt">WebVTT</option>
+              </select></label
+            >
+            <p class="hint">
+              New time = old time × multiplier + shift. For 25 → 23.976 fps
+              footage, a common multiplier is 25 / 23.976; always check against
+              your video.
+            </p>
+          </div>
+          <div class="pane">
+            <div class="labelrow">
+              <label for="source">Subtitle text</label
+              ><label class="file-button"
+                >Open file<input type="file" id="file-source" hidden
+              /></label>
+            </div>
+            <textarea
+              id="source"
+              spellcheck="false"
+              placeholder="Paste subtitle text here…"
+            ></textarea>
+          </div>
+        </div>
+        <div class="actions">
+          <p class="hint">
+            No uploads. No account. No changes to your source files.
+          </p>
+          <div class="group">
+            <button id="run" class="primary">Update timing →</button>
+          </div>
+        </div>
+        <p id="message" class="message" role="status" aria-live="polite"></p>
+      </section>
+      <section class="results">
+        <div class="result-head">
+          <h2>02 / Your result</h2>
+          <div class="group">
+            <button id="export" data-export disabled>
+              Download subtitles ↓
+            </button>
+          </div>
+        </div>
+        <div id="stats" class="stats"></div>
+        <div id="output">
+          <div class="empty">
+            Your results will appear here.<br />Try the example to see what this
+            tool can do.
+          </div>
+        </div>
+      </section>
+      <section class="guide">
+        <article>
+          <h3>01 / Constant offset and linear timing-drift correction</h3>
+          <p>
+            Repair subtitles that start late or progressively drift out of sync.
+          </p>
+        </article>
+        <article>
+          <h3>02 / SRT ↔ WebVTT conversion with cue previews</h3>
+          <p>Everything is processed inside this browser tab.</p>
+        </article>
+        <article>
+          <h3>03 / Explicit warnings for omitted WebVTT metadata</h3>
+          <p>Take the result with you. No account or subscription required.</p>
+        </article>
+      </section>
+      <details class="details">
+        <summary>Scope, formats and limitations</summary>
+        <p>
+          Supports text cues in SRT and WebVTT. This is not audio alignment or
+          transcription. WebVTT NOTE, STYLE, REGION blocks and header metadata
+          are omitted with warnings. Cue settings are retained for VTT and
+          omitted for SRT; text markup is kept as written. Cues starting before
+          zero, reversed intervals or outputs ≥100 hours are rejected. Overlaps
+          are counted between adjacent cues, not automatically fixed. UTF-8 file
+          imports up to 5 MiB.
+        </p>
+      </details>
+    </main>
+    <footer>
+      <span>CaptionShift · A small tool for a real task.</span
+      ><span
+        ><a href="https://github.com/UTokyo2026/captionshift">Open source</a> ·
+        MIT · Works offline after download</span
+      >
+    </footer>
+    <dialog id="privacy-dialog">
+      <h2>Your data stays here.</h2>
+      <p>
+        Processing happens in this browser tab. This app has no analytics,
+        server processing, remote scripts or persistent app storage. Downloads
+        contain the data you choose to export.
+      </p>
+      <p>
+        A hosted page still exposes normal request metadata to its host.
+        Download the standalone HTML and open it offline for disconnected use.
+        Browser extensions and your device are outside the app’s control.
+      </p>
+      <button id="close-privacy">Got it</button>
+    </dialog>
+    <noscript>JavaScript is required for local processing.</noscript
+    ><!--SCRIPT-->
+  </body>
+</html>
