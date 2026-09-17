@@ -1,6 +1,7 @@
 import { build, transform } from "esbuild";
 import { mkdir, readFile, writeFile, copyFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
+import { assemble, verifyArtifact } from "./assemble.mjs";
 const result = await build({
   entryPoints: ["src/app.js"],
   bundle: true,
@@ -22,13 +23,13 @@ const notice =
   (await readFile("LICENSE", "utf8")) +
   "\n" +
   (await readFile("THIRD_PARTY_NOTICES.md", "utf8"));
-const html = (await readFile("src/index.html", "utf8"))
-  .replace(
-    "<!--POLICY-->",
-    `<meta http-equiv="Content-Security-Policy" content="${policy}">`,
-  )
-  .replace("<!--STYLE-->", `<style>${css}</style>`)
-  .replace("<!--SCRIPT-->", `<!-- ${notice} -->\n<script>${js}</script>`);
+const html = assemble(await readFile("src/index.html", "utf8"), {
+  js,
+  css,
+  policy,
+  notice,
+});
+verifyArtifact(html, js, css);
 await mkdir("dist", { recursive: true });
 await writeFile("dist/index.html", html);
 await copyFile("LICENSE", "dist/LICENSE.txt");
