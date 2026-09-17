@@ -2,7 +2,7 @@
 
 平移或缩放字幕时间，转换 SRT 与 WebVTT。
 
-[在线使用](https://utokyo2026.github.io/captionshift/) · [下载离线网页](https://github.com/UTokyo2026/captionshift/releases/latest) · [完整英文说明](README.md)
+[在线使用](https://sq2100.com/captionshift/) · [下载离线网页](https://github.com/sq2100/captionshift/releases/latest) · [完整英文说明](README.md)
 
 ![演示界面](docs/demo.png)
 

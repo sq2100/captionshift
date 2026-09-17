@@ -4,7 +4,7 @@
 
 Shift, stretch and convert SRT or WebVTT captions. Fix an offset or timing drift, right in your browser.
 
-[Open the app](https://utokyo2026.github.io/captionshift/) · [Download offline HTML](https://github.com/UTokyo2026/captionshift/releases/latest) · [简体中文](README.zh-CN.md)
+[Open the app](https://sq2100.com/captionshift/) · [Download offline HTML](https://github.com/sq2100/captionshift/releases/latest) · [简体中文](README.zh-CN.md)
 
 ![CaptionShift example](docs/demo.png)
 
@@ -20,7 +20,7 @@ No uploads, account, API key, tracking scripts, or runtime CDN dependencies. The
 
 ## Quick start
 
-Open the [hosted app](https://utokyo2026.github.io/captionshift/) and click **Try an example**. Or download the HTML from [Releases](https://github.com/UTokyo2026/captionshift/releases/latest), then open it in a modern desktop browser.
+Open the [hosted app](https://sq2100.com/captionshift/) and click **Try an example**. Or download the HTML from [Releases](https://github.com/sq2100/captionshift/releases/latest), then open it in a modern desktop browser.
 
 To build from source (Node.js 20.19+):
 
